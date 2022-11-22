@@ -9,7 +9,7 @@ class Program
         Console.WriteLine(q1());
     }
 
-    //Answer is 969362
+    //Answer is 233168
     static int q1() {
         //Method 1
         //Using basic for loop

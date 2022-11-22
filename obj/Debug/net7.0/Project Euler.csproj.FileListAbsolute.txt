@@ -1,0 +1,15 @@
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/bin/Debug/net7.0/Project Euler
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/bin/Debug/net7.0/Project Euler.deps.json
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/bin/Debug/net7.0/Project Euler.runtimeconfig.json
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/bin/Debug/net7.0/Project Euler.dll
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/bin/Debug/net7.0/Project Euler.pdb
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/obj/Debug/net7.0/Project Euler.csproj.AssemblyReference.cache
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/obj/Debug/net7.0/Project Euler.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/obj/Debug/net7.0/Project Euler.AssemblyInfoInputs.cache
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/obj/Debug/net7.0/Project Euler.AssemblyInfo.cs
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/obj/Debug/net7.0/Project Euler.csproj.CoreCompileInputs.cache
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/obj/Debug/net7.0/Project Euler.dll
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/obj/Debug/net7.0/refint/Project Euler.dll
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/obj/Debug/net7.0/Project Euler.pdb
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/obj/Debug/net7.0/Project Euler.genruntimeconfig.cache
+/Users/jeshuranjebanesan/Coding/C#/Project Euler/obj/Debug/net7.0/ref/Project Euler.dll

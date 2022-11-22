@@ -34,7 +34,13 @@ class Program
         //Use arithmetic sum formula a (a(3) + a(5) - a(15)) with bigO(1)
     }
 
+    //Answer is 4613732
     static int q2 () {
+        //Method 1 
+        //Uses basic brute force method
+        //Instead of checking if term is even, could have a counter capped at 3 as even terms occur every 3 terms
+        //As odd + even = odd, even + odd = odd, then odd + odd = even
+        /*
         int a = 1, b = 0, total = 0;
 
         while ((a += b) < 4000000) {
@@ -43,6 +49,37 @@ class Program
                 total += a;
             }
             Console.WriteLine(a.ToString() + " " + b.ToString() + " " + total.ToString());
+        }
+
+        return total;
+        */
+
+        //Method 2
+        //Uses new sequence that is made of every 3 terms in fib sequence
+        /*
+        int a = 0, b = 2, total = 0;
+
+        while ((a += 3*a + b) < 4000000) {
+            b = (a - b) / 4;
+            total += a;
+        }
+
+        return total;
+        */
+
+        //Method 3
+        //Uses mathematics to find the characteristic equation of this variant of the fibonacci sequence where every 3 terms (all even terms are sampled)
+        //Characteristic equation is x^2 - 4x - 1 = 0 and roots are x = 2 +- √5
+        //Then U n = a (2 + √5)^n + b (2 - √5)^n
+        //Plugging in values, we get that a = 2 - (2 + √5)/√5 and b = (2 + √5)/√5
+        int recurrenceSolution(int i) {
+            return (int)(((2 - (2 + Math.Sqrt(5))/Math.Sqrt(5)) * Math.Pow(2 + Math.Sqrt(5), i)) + ((2 + Math.Sqrt(5))/Math.Sqrt(5)) * Math.Pow(2 - Math.Sqrt(5), i));
+        }
+
+        int total = 0;
+
+        for (int a = 2; recurrenceSolution(a) < 4000000; a++) {
+            total += recurrenceSolution(a);
         }
 
         return total;

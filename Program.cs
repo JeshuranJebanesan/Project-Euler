@@ -6,7 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine(q1());
+        Console.WriteLine(q2());
     }
 
     //Answer is 233168
@@ -32,5 +32,19 @@ class Program
 
         //Hypothetical Method 1
         //Use arithmetic sum formula a (a(3) + a(5) - a(15)) with bigO(1)
+    }
+
+    static int q2 () {
+        int a = 1, b = 0, total = 0;
+
+        while ((a += b) < 4000000) {
+            b = a - b;
+            if (a % 2 == 0) {
+                total += a;
+            }
+            Console.WriteLine(a.ToString() + " " + b.ToString() + " " + total.ToString());
+        }
+
+        return total;
     }
 }

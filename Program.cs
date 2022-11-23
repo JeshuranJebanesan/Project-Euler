@@ -9,6 +9,7 @@ class Program
         Console.WriteLine(q3());
     }
 
+    #region Q1
     //Answer is 233168
     static int q1() {
         //Method 1
@@ -33,9 +34,11 @@ class Program
         //Hypothetical Method 1
         //Use arithmetic sum formula a (a(3) + a(5) - a(15)) with bigO(1)
     }
-
-    //Answer is 461373
-    static int q2() {
+    #endregion
+    #region Q2
+    //Answer is 4613732
+    static int q2Limit = 4000000;
+    static int q2 () {
         //Method 1 
         //Uses basic brute force method
         //Instead of checking if term is even, could have a counter capped at 3 as even terms occur every 3 terms
@@ -43,7 +46,7 @@ class Program
         /*
         int a = 1, b = 0, total = 0;
 
-        while ((a += b) < 4000000) {
+        while ((a += b) < q2Limit) {
             b = a - b;
             if (a % 2 == 0) {
                 total += a;
@@ -59,7 +62,7 @@ class Program
         /*
         int a = 0, b = 2, total = 0;
 
-        while ((a += 3*a + b) < 4000000) {
+        while ((a += 3*a + b) < q2Limit) {
             b = (a - b) / 4;
             total += a;
         }
@@ -78,20 +81,17 @@ class Program
 
         int total = 0;
 
-        for (int a = 2; recurrenceSolution(a) < 4000000; a++) {
+        for (int a = 2; recurrenceSolution(a) < q2Limit; a++) {
             total += recurrenceSolution(a);
         }
 
         return total;
     }
-
+    #endregion
+    #region Q3
     //Answer is 6857
     static long q3() {
-        //Method 1
-        //Uses basic brute force
-        //This brute force has a helper function to determine if a number is prime adding the number if so to a list of primes
-        //The complete list of primes will be calculated by finding the factors after the sqrt of the number and checking whether they too are prime
-        bool isPrime(long n) {
+         static bool isPrime(long n) {
             List<long> primes = new List<long>();
             bool isPrime;
 
@@ -112,15 +112,34 @@ class Program
             }
             return isPrime;
         }
+        long q3Limit = 600851475143;
+        //Method 1
+        //Uses basic brute force
+        //This brute force has a helper function to determine if a number is prime adding the number if so to a list of primes
+        //The complete list of primes will be calculated by finding the factors after the sqrt of the number and checking whether they too are prime
+        /*
         List<long> primes = new List<long>();
 
-        for (long i = 2; i <= (600851475143); i++ ) {
-            if (isPrime(i) && (600851475143 % i == 0)) {
+        for (long i = 2; i <= (q3Limit); i++ ) {
+            if (isPrime(i) && (q3Limit % i == 0)) {
                 primes.Add(i);
                 Console.WriteLine(i);
             }
         } 
 
         return primes.Last();
+        */
+
+        static long q3(int count, long final) {
+        //Method 2
+        //Method 1 is way too slow; a better method might be a recursive method dividing a number by primes till the number equals 1
+        //As every number has a prime factorisation if the count starts off at the first prime, the number's largest prime will be the return value
+        if (isPrime(count) && final / count == 1 && final % count == 0) { return count; }
+        else if (isPrime(count) && final % count == 0) { return q3(count, final / count); }
+        else return q3(count + 1, final);
+        }
+
+        return q3(2, q3Limit);
     }
+    #endregion
 }

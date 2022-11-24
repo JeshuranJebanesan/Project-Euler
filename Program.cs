@@ -10,7 +10,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine(q4());
+        
     }
 
     #region Q1
@@ -156,7 +156,8 @@ class Program
     #region Q4
     //Answer is 906609
     static int q4() {
-        //Method 1 starts from the largest 3 digit number working its way down
+        //Method 1
+        //Starts from the largest 3 digit numbers working its way down
         //I thought this would ensure the largest 3 digit numbers being multiplied giving the largest palindrome but I was wrong
         //As the program used to have a return in the for loops, the first palindrome found would be returned as I assumed both x and y would be their largest values
         //However this is only true for x as an edge case 580085 = 995 * 583. Even though x is larger than the x in the answer, y is significantly smaller.
@@ -187,5 +188,36 @@ class Program
             else return flip(x.Substring(1)) + x.Substring(0, 1);
         }
     }
+    #endregion
+    #region Q5
+    //Answer is 232792560
+    static long q5() {
+        //Method 1
+        //Uses basic gcd and lcm formula to calculate lcm
+        //Applies lcm onto every element in the list
+        long lcmcount = 1;
+
+        long gcd(long x, long y) {
+            if (x == 0) {return y;}
+            return gcd(y % x, x);
+        }
+
+        long lcm(long x, int y) {
+            return x*y / gcd(x, y);
+        }
+        
+        for (int i = 2; i < 21; i++) {
+            Console.WriteLine(i + " " + lcmcount);
+            lcmcount = lcm(lcmcount, i);
+        }
+
+        return lcmcount;
+
+        //Hypothetical Method 1
+        //Make an array where each element stores a list of its prime factors or have an array of primes
+        //If one term in the sequence 1..20, has a higher number of certain primes than the other, that number is updated
+        //At the end all primes are multiplied
+    }
+    //Research sizes of ints, the question answer was wrong initially as there was overflow
     #endregion
 }

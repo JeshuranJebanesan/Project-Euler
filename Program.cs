@@ -1,12 +1,16 @@
 ﻿//The following has been written to solve all of Euler's Project on projecteuler.net/archives
 //The goal is not to brute force finish as fast as I can but to solve the questions elegantly and also to learn and experiment with different ways of solving the same problem
+//My first method will usually be a brute force method, but I will not move onto the next question without finding a solution I deem nice
+//I will write hypothetical solutions for review if I have already solved the problem but wish to go more in depth later
+// Every 5 problems I will review the previous 5 solutions and see if I can update them even more
+//C# with .NET version 7.0.100
 
 namespace Project_Euler;
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine(q3());
+        Console.WriteLine(q4());
     }
 
     #region Q1
@@ -34,6 +38,7 @@ class Program
         //Hypothetical Method 1
         //Use arithmetic sum formula a (a(3) + a(5) - a(15)) with bigO(1)
     }
+    //Review GCD and LCM
     #endregion
     #region Q2
     //Answer is 4613732
@@ -87,6 +92,7 @@ class Program
 
         return total;
     }
+    //Review GCD and LCM
     #endregion
     #region Q3
     //Answer is 6857
@@ -140,6 +146,46 @@ class Program
         }
 
         return q3(2, q3Limit);
+
+        //Hyptohetical Method 1
+        //Use a prime finding sieve or some other advanced algorithm
+    }
+    //Review data types and the different types and sizes of Int e.g Int32 Int64 and long
+    //Review prime finding algorithms
+    #endregion
+    #region Q4
+    //Answer is 906609
+    static int q4() {
+        //Method 1 starts from the largest 3 digit number working its way down
+        //I thought this would ensure the largest 3 digit numbers being multiplied giving the largest palindrome but I was wrong
+        //As the program used to have a return in the for loops, the first palindrome found would be returned as I assumed both x and y would be their largest values
+        //However this is only true for x as an edge case 580085 = 995 * 583. Even though x is larger than the x in the answer, y is significantly smaller.
+        //In the answer, 906609 = 993 * 913
+        int maxBound = 99;
+        int largestPalindrome = 0;
+
+        for (int x = 999; x > maxBound; x--) {
+            for (int y = 999; y > 99; y--) {
+                 if (isPalindrome(x * y)) {
+                    if (x * y > largestPalindrome) {
+                        largestPalindrome = x * y;
+                        maxBound = y;
+                    }
+                }
+            }
+        }
+        return largestPalindrome;
+
+        bool isPalindrome(int x) {
+            string y = x.ToString();
+            int length = y.Length;
+            return y.Substring(0, length) == flip(y).Substring(0, length);
+        }
+
+        string flip(string x) {
+            if (x.Length == 1) { return x; }
+            else return flip(x.Substring(1)) + x.Substring(0, 1);
+        }
     }
     #endregion
 }

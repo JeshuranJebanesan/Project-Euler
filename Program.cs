@@ -10,7 +10,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        
+        Console.Write(q6());
     }
 
     #region Q1
@@ -219,5 +219,20 @@ class Program
         //At the end all primes are multiplied
     }
     //Research sizes of ints, the question answer was wrong initially as there was overflow
+    #endregion
+    #region Q6
+    //Answer is 25164150
+    static int q6() {
+        //Method 1
+        //Use common polynomial sum equations to solve the question efficiently
+        long linSum(int m) {
+            return (m + 1) * m / 2; 
+        }
+        long squareSum(int m) {
+            return m * (m+1) * (2*m + 1) / 6;
+        }
+        int q6Limit = 100;
+        return (int)Math.Pow(linSum(q6Limit), 2) - (int)squareSum(q6Limit);
+    }
     #endregion
 }

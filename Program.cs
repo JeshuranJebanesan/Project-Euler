@@ -6,11 +6,12 @@
 //C# with .NET version 7.0.100
 
 namespace Project_Euler;
+
 class Program
 {
     static void Main(string[] args)
     {
-        Console.Write(q6());
+        Console.Write(q7());
     }
 
     #region Q1
@@ -97,7 +98,7 @@ class Program
     #region Q3
     //Answer is 6857
     static long q3() {
-         static bool isPrime(long n) {
+         bool isPrime(long n) {
             List<long> primes = new List<long>();
             bool isPrime;
 
@@ -136,7 +137,7 @@ class Program
         return primes.Last();
         */
 
-        static long q3(int count, long final) {
+        long q3(int count, long final) {
         //Method 2
         //Method 1 is way too slow; a better method might be a recursive method dividing a number by primes till the number equals 1
         //As every number has a prime factorisation if the count starts off at the first prime, the number's largest prime will be the return value
@@ -147,7 +148,7 @@ class Program
 
         return q3(2, q3Limit);
 
-        //Hyptohetical Method 1
+        //Hypothetical Method 1
         //Use a prime finding sieve or some other advanced algorithm
     }
     //Review data types and the different types and sizes of Int e.g Int32 Int64 and long
@@ -233,6 +234,41 @@ class Program
         }
         int q6Limit = 100;
         return (int)Math.Pow(linSum(q6Limit), 2) - (int)squareSum(q6Limit);
+    }
+    #endregion
+    #region Q7
+    //Answer is 104743
+    static long q7() {
+        //Method 1
+        //Uses most basic prime finding algorithm I could think of
+        //Could also research and use sieves e.g Eratosthenes, Atkins ...
+        int q7Limit = 10001;
+        int primeCount = 0; 
+        int primesCount;
+        List<long> primes = new List<long>();
+
+        for ( long i = 2; ; i++ ) {
+            for (primesCount = 0; primesCount != primes.Count(); primesCount++ ) {
+                if (i % primes[primesCount] == 0) {
+                    break;
+                }
+            }
+
+            if (primesCount == primes.Count()) {
+            primeCount++;
+            if (primeCount == q7Limit) {return i;}
+            primes.Add(i);
+            }
+        }
+    }
+    //Had problem trying to break out of nested loops
+    //To solve I had a separate variable, primescount keep track of whether the first loop was iterated through fully or if it broke
+    //If it broke once, I would break again out of the second loop
+    //Additional ways to solve breaking out of nested loops involve changing the local iterator value, use of goto
+    #endregion
+    #region Q8
+    static int q8() {
+
     }
     #endregion
 }

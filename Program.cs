@@ -11,7 +11,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.Write(q7());
+        Console.Write(q8());
     }
 
     #region Q1
@@ -267,8 +267,41 @@ class Program
     //Additional ways to solve breaking out of nested loops involve changing the local iterator value, use of goto
     #endregion
     #region Q8
-    static int q8() {
+    //Answer is 23514624000
+    static long q8() {
+        //Method 1 uses basic brute force algorithm iterating through every string in q8 of length 13, comparing its size when multiplied to a store of the current biggest answer so far
+        string q8 = "7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450";
+        int q8Limit = 13;
+        long counter;
+        long q8Ans = 0;
+        int asciiVal = 48;
 
+        for (int i = 0; i <= q8.Length - q8Limit; i++) {
+            counter = 1;
+            for (int j = 0; j < q8Limit; j++) {
+                Console.WriteLine(counter + " " + i + " " + j + " " + (i+j) + " " + (q8[i+j]-asciiVal));
+                counter *= (q8[i+j]-asciiVal);
+            }
+
+            if (counter > q8Ans) { q8Ans = counter;}
+        }
+        return q8Ans;
+
+        //Hypothetical Method 1
+        //There is a lot of repetition in Method 1. Namely iterating through every group of 13 digits will use most digits 1000 times. 
+        //We can remove all numbers of q8 that are within a range of 13 numbers of any number 0 as any group of numbers multiplied by 0 returns 0
+        //This will return a few lists that we can an answer finding algorithm
+
+        //Hypothetical Method 2
+        //We can have a pointer at 0 and a pointer at 12 multiplying all numbers between the pointers
+        //If the pointer at the front encounters a 0, the pointers will have their value increased by 13 (as long as no new 0s are within the new string) as 0 ruins the multiplication
+        //If the number leaving the string is larger then the number entering, the new string isn't considered for multiplication as it is obviously smaller 
+        //However the numbers leaving and entering will be stored up to a length of 13
+        //e.g if 3 leaves and 2 enters, then the new number is smaller but if the next number to leave is 1 and the new entree 9, (3*1 > 2*9) then the new biggest number is calculated
+        //However this code while more efficient is unnecessary for such a simple problem.
     }
+    //Had some problems with char conversion to int
+    //Bugfixed well and spotted problem intelligently and solved by converting char to int to ascii then minusing the ascii constant for numbers(48)
+    //Could also convert char to string then convert to int
     #endregion
 }

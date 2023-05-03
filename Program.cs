@@ -11,7 +11,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.Write(q8());
     }
 
     #region Q1
